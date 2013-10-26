@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Make me a startup!</title>
+    <style>
+      body {
+        background-image:url('retina_wood.png');
+      }
+
+      .container {
+        width: 700px;
+        margin: 100px auto;
+        border-radius: 20px;
+        padding:20px;
+        background-image:url('grey.png');
+      }
+
+      .pitch {
+        letter-spacing: 10px;
+        margin: 0 auto;
+        color: #555;
+        width:100%;
+        text-align: center;
+        vertical-align: center;
+        font: 25px fantasy;
+      }
+
+      .product, .market {
+        color: #F00;
+        font-size:35px;
+      }
+
+      .brand {
+        color:#33F;
+        font-size: 60px;
+        font-weight: bold;
+        font-family: Courier;
+      }
+
+      .buttons {
+        margin: 20px auto;
+        width: 350px;
+      }
+
+      button {
+        display: inline;
+        margin: 0 30px;
+        border: 1px solid #555;
+        border-radius: 5px;
+        padding:3px 10px;
+        background-color: transparent;
+        font: 24px fantasy;
+        cursor: pointer;
+        color:#555;
+        outline: none;
+      }
+
+      button:hover {
+        color:#888;
+        border-color: #888;
+      }
+
+      button:active {
+        color:#666;
+        border-color: #666;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    
+    <div class='container'>
+      <div class="pitch">
+        <div class="brand"></div>
+        <br>It's like<br>
+        <span class="product"></span>
+        <br>but for<br>
+        <span class="market"></span>
+      </div>
+      <div class='buttons'>
+        <button class='love'>Love it</button>
+        <button class='hate'>Hate it</button>
+      </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script> 
+    <script>
+      $(document).on('ready', function() {
+        var products = [
+          {name: "Instagram", pre: "Insta", suf: "Gram", pref: "both"},
+          {name: "Facebook", pre: "Face", suf: "Book", pref: "both"},
+          {name: "LinkedIn", pre: "Linked", suf: "-In", pref: "both"},
+          {name: "Tumblr", pre: "Tum", suf: "blr", pref: "suf"},
+          {name: "Grindr", pre: "Grind", suf: "Grind", pref: "pre"},
+          {name: "Grouper", pre: "Group", suf: "Date", pref: "pre"},
+          {name: "Uber", pre: "Cab", suf: "Cabs", pref: "suf"},
+          {name: "Big Data", pre: "Compu", suf: "lytics", pref: "both"},
+          {name: "Quadcopters", pre: "Quad", suf: "Copter", pref: "both"},
+          {name: "Lyft", pre: "Ride", suf: "Ride", pref: "both"},
+          {name: "Venmo", pre: "Ven", suf: "Cash", pref: "suf"},
+          {name: "Walmart", pre: "Wal", suf: "Mart", pref: "both"},
+          {name: "LiveJournal", pre: "Live", suf: "Journal", pref: "both"},
+          {name: "Snapchat", pre: "Snap", suf: "Snap", pref: "pre"},
+          {name: "Google", pre: "Find-a-", suf: "Search", pref: "both"},
+          {name: "The cloud", pre: "Cloud", suf: "Cloud", pref: "both"},
+          {name: "Amazon", pre: "E-", suf: "azon", pref: "suf"},
+          {name: "Twitter", pre: "SMS", suf: "Tweets", pref: "suf"},
+          {name: "AirBNB", pre: "Air", suf: "BNB", pref: "suf"},
+          {name: "Blogging", pre: "Blog", suf: "Blog", pref: "suf"}
+        ];
+
+        var markets = [
+          {name: "Cats", pre: "Meow", suf: "Cat", pref: "both"},
+          {name: "Convicts", pre: "Con", suf: "Vict", pref: "both"},
+          {name: "Sinners", pre: "Sin", suf: "Sin", pref: "both"},
+          {name: "Losers", pre: "Lame", suf: "Lame", pref: "both"},
+          {name: "Singles", pre: "Meet", suf: "Together", pref: "suf"},
+          {name: "Vegans", pre: "Vege", suf: "Veg", pref: "pre"},
+          {name: "Chubby-chasers", pre: "Fat", suf: "Chub", pref: "both"},
+          {name: "Pandas", pre: "Panda", suf: "Panda", pref: "both"},
+          {name: "Bacteria", pre: "Microbe", suf: "Germ", pref: "suf"},
+          {name: "Billionaires", pre: "Midas", suf: "Billions", pref: "both"},
+          {name: "Drones", pre: "Drone", suf: "Bot", pref: "both"},
+          {name: "Apple Fans", pre: "i", suf: "Mac", pref: "pre"},
+          {name: "Small Insects", pre: "Buzz", suf: "Bug", pref: "both"},
+          {name: "Dogs", pre: "Woof", suf: "Pups", pref: "both"},
+          {name: "Mark Zuckerberg", pre: "Zucker", suf: "Berg", pref: "pre"},
+          {name: "Obama", pre: "Obama", suf: "Bama", pref: "both"},
+          {name: "Startups", pre: "Inno", suf: "Disrupt", pref: "both"},
+          {name: "Half-asians", pre: "Half-", suf: "Hapa", pref: "pre"},
+          {name: "Danny Glover", pre: "Danny", suf: "Glover", pref: "both"},
+          {name: "Wall Street", pre: "OnePercent", suf: "Wealth", pref: "both"},
+          {name: "Amputees", pre: "Gimp", suf: "Gimp", pref: "both"},
+          {name: "Rednecks", pre: "Ameri", suf: "Merica", pref: "pre"}
+        ];
+
+        var generateBrand = function() {
+          var product = products[Math.floor(Math.random()*products.length)],
+              market = markets[Math.floor(Math.random()*markets.length)],
+              brand;
+
+          if (product.pref === market.pref) {
+            brand = (Math.floor(Math.random()*2) ? product.pre + market.suf : market.pre + product.suf); 
+          } else if (product.pref === "pre") {
+            brand = product.pre + market.suf;
+          } else {
+            brand = market.pre + product.suf;
+          }
+
+          $('.brand').text(brand);
+          $('.product').text(product.name);
+          $('.market').text(market.name);          
+        };
+
+        generateBrand();
+
+        $(document).on('keypress', function(e) {
+          if (e.keycode === 13) {
+            generateBrand();
+          }
+        });
+        $('button.hate').on('click', function() {
+          generateBrand();
+        });
+        $('button.love').on('click', function() {
+          window.location.href = "https://affiliate.godaddy.com/redirect/domainsearch?DomainToCheck=" + $('.brand').text() + "&Tld=com&Submit=&q=36933ED2E86D10E2CA37C7E9D96005C9FE445157B20437446A9BB90166F61ADDDEE04ABF89E86E48F6E49F3FDE9F2B7C&r=";
+        });
+      });
+    </script>
+  </body>
+</html>
